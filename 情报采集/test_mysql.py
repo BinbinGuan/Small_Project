@@ -4,7 +4,7 @@ conn = MySQLdb.Connect(
                    host = '120.27.101.31',
                    port = 3306,  #注意端口号为数字类型，其余都为字符串
                    user = 'root',
-                   passwd = 'LUYIluyi123',
+                   passwd = '******',
                    db = 'baijiahao',
                    charset = 'utf8'
                        )
