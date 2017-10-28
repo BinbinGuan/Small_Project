@@ -6,64 +6,70 @@
 
       # -*- coding:utf-8 -*-
 
-      from PIL import Image
+from PIL import Image
 
-      '''
-         @author:xunalove
-          修改文件位置
-          修改图片id
+'''
+ @author:xunalove
+  修改文件位置
+  修改图片id
 
-      '''
-      def cut(id,vx,vy):
-          #打开图片图片1.jpg
-          name1 = "/home/xuna/桌面/3/图片"+ id + ".jpg"
-          name2 = "/home/xuna/桌面/3/图片"+ id +"_切块_"
-          im =Image.open(name1)
+'''
+def cut(id,vx,vy):
+  #打开图片图片1.jpg
+  name1 = "/home/xuna/桌面/tu/"+ id + ".jpg"
+  print name1
+  name2 = "/home/xuna/桌面/tu/"+ id +"_切块_"
+  im =Image.open(name1)
 
-          #偏移量
-          dx = 40
-          dy = 40
-          n = 1
+  #偏移量
+  dx = 40
+  dy = 40
+  n = 1
 
-          #左上角切割
-          x1 = 0
-          y1 = 0
-          x2 = vx
-          y2 = vy
+  #左上角切割
+  x1 = 0
+  y1 = 0
+  x2 = vx
+  y2 = vy
+  print im.size #im.size[0] 宽和高
+  w = im.size[0]#宽
+  h = im.size[1]#高
 
-          #纵向
-          while x2 <= 320:
-              #横向切
-              while y2 <= 480:
-                  name3 = name2 + str(n) + ".jpg"
-                  #print n,x1,y1,x2,y2
-                  im2 = im.crop((y1, x1, y2, x2))
-                  im2.save(name3)
-                  y1 = y1 + dy
-                  y2 = y1 + vy
-                  n = n + 1
-              x1 = x1 + dx
-              x2 = x1 + vx
-              y1 = 0
-              y2 = vy
+  #纵向
+  while x2 <= h:
+      #横向切
+      while y2 <= w:
+          name3 = name2 + str(n) + ".jpg"
+          #print n,x1,y1,x2,y2
+          im2 = im.crop((y1, x1, y2, x2))
+          im2.save(name3)
+          y1 = y1 + dy
+          y2 = y1 + vy
+          n = n + 1
+      x1 = x1 + dx
+      x2 = x1 + vx
+      y1 = 0
+      y2 = vy
 
-          print "图片切割成功，切割得到的子图片数为"
-          return n-1
+  print "图片切割成功，切割得到的子图片数为"
+  return n-1
 
 
-      if __name__=="__main__":
 
-          #取图片id的后两位
-          id = "1"
+if __name__=="__main__":
 
-          #切割图片的面积 vx,vy
-          #大
-          res = cut(id,160,160)
+  #取图片id的后两位
+  id = "1"
 
-          #中
-          #res = cut(id,120,120)
+  #切割图片的面积 vx,vy
+  #大
+  res = cut(id,160,160)
 
-          #小
-          #res = cut(id,80,80)
+  #中
+  #res = cut(id,120,120)
 
-          print res
+  #小
+  #res = cut(id,80,80)
+
+  print res
+
